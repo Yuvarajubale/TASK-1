@@ -1,0 +1,23 @@
+package testQuiz1;
+
+import java.util.Random;
+
+//2. Prompt the user to enter their guess for the generated number.
+
+public class number_game {
+
+	    public static void main(String[] args) {
+	        // Define the range
+	        int min = 1;
+	        int max = 100;
+
+	        // Create a Random object
+	        Random random = new Random();
+
+	        // Generate a random number within the specified range
+	        int randomNumber = random.nextInt((max - min) + 1) + min;
+
+	        // Print the random number
+	        System.out.println("Random Number: " + randomNumber);
+	    }
+	}
