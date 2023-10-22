@@ -1,0 +1,58 @@
+package testQuiz1;
+
+import java.util.Random;
+import java.util.Scanner;
+
+//6. Add the option for multiple rounds, allowing the user to play again.
+
+public class multiple_round {
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        boolean playAgain = true;
+
+	        while (playAgain) {
+	            playRound(scanner);
+	            System.out.print("Do you want to play again? (yes/no): ");
+	            String playChoice = scanner.next().toLowerCase();
+	            playAgain = playChoice.equals("yes");
+	        }
+
+	        System.out.println("Thanks for playing!");
+	        scanner.close();
+	    }
+
+	    public static void playRound(Scanner scanner) {
+	        Random random = new Random();
+	        int minRange = 1;  // Minimum number in the range
+	        int maxRange = 100; // Maximum number in the range
+	        int secretNumber = random.nextInt(maxRange - minRange + 1) + minRange; // Generate a random number within the range
+	        int maxAttempts = 10; // Maximum number of attempts allowed
+
+	        System.out.println("Welcome to the Number Guessing Game!");
+	        System.out.println("I've selected a number between " + minRange + " and " + maxRange + ". Try to guess it.");
+	        System.out.println("You have " + maxAttempts + " attempts.");
+
+	        for (int attempts = 1; attempts <= maxAttempts; attempts++) {
+	            System.out.print("Attempt " + attempts + ": Enter your guess: ");
+	            int userGuess = scanner.nextInt();
+
+	            if (userGuess < minRange || userGuess > maxRange) {
+	                System.out.println("Please enter a number within the valid range.");
+	            } else if (userGuess < secretNumber) {
+	                System.out.println("Try a higher number.");
+	            } else if (userGuess > secretNumber) {
+	                System.out.println("Try a lower number.");
+	            } else {
+	                System.out.println("Congratulations! You've guessed the secret number " + secretNumber + " in " + attempts + " attempts.");
+	                break;
+	            }
+
+	            if (attempts == maxAttempts) {
+	                System.out.println("Sorry, you've run out of attempts. The secret number was " + secretNumber + ".");
+	            }
+	        }
+	    }
+	}
+
+
